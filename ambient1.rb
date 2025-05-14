@@ -1,4 +1,4 @@
-use_synth :hollow
+use_synth :dark_ambience
 with_fx :reverb, mix: 0.7 do
   live_loop :note1 do
     play choose([:D4,:E4]), attack: 6, release: 6
