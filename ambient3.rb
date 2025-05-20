@@ -1,7 +1,7 @@
 use_bpm 90
 
 # Piano Melody
-define :piano do |n|
+define :melody do |n|
   count = 0
   loop do
     sleep 16
@@ -26,7 +26,7 @@ define :drone do |n|
     with_fx :reverb, mix: 0.8, room: 1 do
       with_fx :slicer, phase: 8, wave: 0, mix: 0.3 do
         use_synth :dark_ambience
-        play chord(:c2, '5'), attack: 8, release: 8, cutoff: 60, amp: 0.4
+        play chord_play(:c2, '5'), attack: 8, release: 8, cutoff: 60, amp: 0.4
         sleep 16
       end
     end
@@ -35,7 +35,7 @@ define :drone do |n|
   end
 end
 
-# Harmonic Texture (left and right alternation)
+# Harmonic Texture
 define :texture do |n|
   count = 0
   loop do
@@ -43,9 +43,9 @@ define :texture do |n|
       with_fx :hpf, cutoff: 40, mix: 0.3 do
         use_synth :fm
         notes = [:c3, :eb3, :f3, :bb3, :a3].ring
-        play notes.tick, attack: 4, release: 12, amp: 0.1, pan: -0.7 # Left side
+        play notes.tick, attack: 4, release: 12, amp: 0.1, pan: -0.7
         sleep 8
-        play notes.look, attack: 4, release: 12, amp: 0.1, pan: 0.7 # Right side
+        play notes.look, attack: 4, release: 12, amp: 0.1, pan: 0.7
         sleep 8
       end
     end
@@ -56,7 +56,7 @@ end
 
 # Start loops
 in_thread do
-  piano(3)
+  melody(3)
 end
 
 in_thread do
